@@ -9,12 +9,10 @@
 
 Heap::Heap(Scene* scene, int start, int linkSize) : start_address(start), scene(scene), linkSize(linkSize)
 {
-	Node* headNode = new Node(start, linkSize, nullptr, nullptr, LINK_TYPE, LINK_ID);
-	Node* tailNode = new Node(END_ADDRESS, linkSize, nullptr, nullptr, LINK_TYPE, LINK_ID);
-	headNode->SetNext(tailNode);
-	tailNode->SetPrev(headNode);
-	head = headNode;
-	tail = tailNode;
+	head = new Node(start, linkSize, nullptr, nullptr, LINK_TYPE, LINK_ID);
+	tail = new Node(END_ADDRESS, linkSize, nullptr, nullptr, LINK_TYPE, LINK_ID);
+	head->SetNext(tail);
+	tail->SetPrev(head);
 
 	currentActorCount[LINK_ID] = 2;
 };
@@ -970,14 +968,7 @@ void Heap::Solve()
 		{
 			int deallocations = 0;
 			int currentRoomDeallocations = currentRoom->GetDeallocatableActors().size();
-			if (currentRoomDeallocations)
-			{
-				 deallocations = rand() % currentRoomDeallocations;
-			}
-			else
-			{
-				deallocations = 0;
-			}
+			deallocations = rand() % (currentRoomDeallocations + 1);
 
 			for (int j = 0; j < deallocations; j++)
 			{
@@ -1006,14 +997,7 @@ void Heap::Solve()
 			}
 
 			int allocations = 0;
-			if (MAX_ALLOCATIONS_PER_STEP == 0)
-			{
-				allocations = 0;
-			}
-			else
-			{
-				allocations = rand() % MAX_ALLOCATIONS_PER_STEP;
-			}
+			allocations = rand() % (MAX_ALLOCATIONS_PER_STEP + 1);
 			 
 			for (int j = 0; j < allocations; j++)
 			{
@@ -1094,14 +1078,7 @@ void Heap::Solve()
 		//we're now standing in room 0
 
 		int allocations = 0;
-		if (MAX_ALLOCATIONS_PER_STEP == 0)
-		{
-			allocations = 0;
-		}
-		else
-		{
-			allocations = rand() % MAX_ALLOCATIONS_PER_STEP;
-		}
+		allocations = rand() % (MAX_ALLOCATIONS_PER_STEP + 1);
 
 		for (int j = 0; j < allocations; j++)
 		{
@@ -1337,14 +1314,7 @@ void Heap::SolveObservatory()
 		{
 			int deallocations = 0;
 			int currentRoomDeallocations = currentRoom->GetDeallocatableActors().size();
-			if (currentRoomDeallocations)
-			{
-				deallocations = rand() % currentRoomDeallocations;
-			}
-			else
-			{
-				deallocations = 0;
-			}
+			deallocations = rand() % (currentRoomDeallocations + 1);
 
 			for (int j = 0; j < deallocations; j++)
 			{
@@ -1364,14 +1334,7 @@ void Heap::SolveObservatory()
 			}
 
 			int allocations = 0;
-			if (MAX_ALLOCATIONS_PER_STEP == 0)
-			{
-				allocations = 0;
-			}
-			else
-			{
-				allocations = rand() % MAX_ALLOCATIONS_PER_STEP;
-			}
+			allocations = rand() % (MAX_ALLOCATIONS_PER_STEP + 1);
 
 			for (int j = 0; j < allocations; j++)
 			{
@@ -1568,14 +1531,7 @@ void Heap::SolveGraveyard()
 		{
 			int deallocations = 0;
 			int currentRoomDeallocations = currentRoom->GetDeallocatableActors().size();
-			if (currentRoomDeallocations)
-			{
-				deallocations = rand() % currentRoomDeallocations;
-			}
-			else
-			{
-				deallocations = 0;
-			}
+			deallocations = rand() % (currentRoomDeallocations + 1);
 
 			for (int j = 0; j < deallocations; j++)
 			{
@@ -1595,14 +1551,7 @@ void Heap::SolveGraveyard()
 			}
 
 			int allocations = 0;
-			if (MAX_ALLOCATIONS_PER_STEP == 0)
-			{
-				allocations = 0;
-			}
-			else
-			{
-				allocations = rand() % MAX_ALLOCATIONS_PER_STEP;
-			}
+			allocations = rand() % (MAX_ALLOCATIONS_PER_STEP + 1);
 
 			for (int j = 0; j < allocations; j++)
 			{
@@ -1815,14 +1764,7 @@ void Heap::SolveGrave()
 		{
 			int deallocations = 0;
 			int currentRoomDeallocations = currentRoom->GetDeallocatableActors().size();
-			if (currentRoomDeallocations)
-			{
-				deallocations = rand() % currentRoomDeallocations;
-			}
-			else
-			{
-				deallocations = 0;
-			}
+			deallocations = rand() % (currentRoomDeallocations + 1);
 
 			for (int j = 0; j < deallocations; j++)
 			{
@@ -1852,14 +1794,7 @@ void Heap::SolveGrave()
 			}
 
 			int allocations = 0;
-			if (MAX_ALLOCATIONS_PER_STEP == 0)
-			{
-				allocations = 0;
-			}
-			else
-			{
-				allocations = rand() % MAX_ALLOCATIONS_PER_STEP;
-			}
+			allocations = rand() % (MAX_ALLOCATIONS_PER_STEP + 1)
 
 			for (int j = 0; j < allocations; j++)
 			{
